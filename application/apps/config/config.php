@@ -5,15 +5,16 @@
  * NOTE: please remove this comment.
  */
 defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirname(__FILE__) . '/../..'));
-defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
+defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/apps');
 
 return new \Phalcon\Config([
     'database' => [
-        'adapter'     => 'Mysql',
-        'host'        => 'localhost',
+        'adapter'     => 'mysql',
+        'host'        => 'mysql',
+        'port'     => 3306,
         'username'    => 'root',
-        'password'    => '',
-        'dbname'      => 'test',
+        'password'    => 'root',
+        'dbname'      => 'phalcon_app_multiple',
         'charset'     => 'utf8',
     ],
     'application' => [

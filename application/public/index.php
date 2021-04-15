@@ -6,7 +6,7 @@ use Phalcon\Di\FactoryDefault;
 error_reporting(E_ALL);
 
 define('BASE_PATH', dirname(__DIR__));
-define('APP_PATH', BASE_PATH . '/app');
+define('APP_PATH', BASE_PATH . '/apps');
 
 try {
     /**
@@ -39,6 +39,19 @@ try {
      * Handle the request
      */
     $application = new \Phalcon\Mvc\Application($di);
+
+    $application->registerModules(
+        [
+            "frontend" => [
+                "className" => "Frontend\\Module",
+                "path"      => "../apps/frontend/Module.php",
+            ],
+            "backend"  => [
+                "className" => "Backend\\Module",
+                "path"      => "../apps/backend/Module.php",
+            ]
+        ]
+    );
 
     echo $application->handle($_SERVER['REQUEST_URI'])->getContent();
 } catch (\Exception $e) {
